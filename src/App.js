@@ -1,24 +1,54 @@
-import logo from './logo.svg';
+import React from "react";
+import {BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import {Layout, Typography, Space} from "antd";
+import {Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails} from './components';
+//import Switch from "react-router-dom/es/Switch";
 import './App.css';
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+   <div className='app'>
+       <div className="navbar">
+           <Navbar/>
+       </div>
+       <div className="main">
+           <Layout>
+               <div className="routes">
+                   <Switch>
+                      <Route exact path="/">
+                          <Homepage/>
+                      </Route>
+                       <Route path="/exchanges">
+                           <Exchanges/>
+                       </Route>
+                       <Route path="/cryptocurrencies">
+                           <Cryptocurrencies/>
+                       </Route>
+                       <Route path="/cryptodetails">
+                           <CryptoDetails/>
+                       </Route>
+                       <Route path="/news">
+                           <News/>
+                       </Route>
+                   </Switch>
+               </div>
+           </Layout>
+           <div className="footer">
+               <Typography.Title level={5} style={{color: "white", textAlign: 'center'}}>Copyright © 2021
+                   <Link to='/'>
+                       Cryptoverse Inc.
+                   </Link>  Cryptoverse <br/>
+                   All rights reserved
+               </Typography.Title>
+               <Space>
+                   <Link to='/'>Home</Link>
+                   <Link to='/exchanges'>Exchanges</Link>
+                   <Link to='/news'>News</Link>
+               </Space>
+           </div>
+       </div>
+   </div>
+      </Router>
   );
 }
 
