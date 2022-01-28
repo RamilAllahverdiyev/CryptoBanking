@@ -24,7 +24,7 @@ function App() {
                        <Route path="/cryptocurrencies">
                            <Cryptocurrencies/>
                        </Route>
-                       <Route path="/cryptodetails">
+                       <Route path="/crypto/:coinId">
                            <CryptoDetails/>
                        </Route>
                        <Route path="/news">
