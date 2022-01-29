@@ -1,22 +1,25 @@
 import React from "react";
 import {Line} from 'react-chartjs-2'
 import {Col, Row, Typography} from "antd";
+import moment from "moment/moment";
 const { Title } = Typography;
 
 function LineChart({coinHistory, currentPrice, coinName}){
 const coinPrice = [];
 const coinTimestamp = [];
+console.log("AAAAAAAAAAAAAAAAAAAA")
 console.log(coinHistory)
-console.log(coinHistory?.data?.coin?.sparkline?.length)
-    for (let i = 0; i < coinHistory?.data?.coin?.sparkline?.length; i += 1) {
-        coinPrice.push(coinHistory?.data?.coin?.sparkline[i]);
+console.log(coinHistory?.data?.history?.length)
+    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+        coinPrice.push(coinHistory?.data?.history[i].price);
     }
 
-    for (let i = 0; i < coinHistory?.data?.coin?.sparkline?.length; i += 1) {
-        coinTimestamp.push(new Date(coinHistory?.data?.coin?.allTimeHigh?.timestamp));
+    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+        var fulldate = new Date((coinHistory?.data?.history[i].timestamp)*1000);
+        var converted_date = moment(fulldate).format("llll");
+        coinTimestamp.push(converted_date);
     }
     console.log(coinTimestamp)
-    console.log(coinPrice)
     const data = {
         labels: coinTimestamp,
         datasets: [
@@ -40,8 +43,6 @@ console.log(coinHistory?.data?.coin?.sparkline?.length)
             ],
         },
     };
-    console.log(options)
-    console.log(data)
     return(
         <>
         <Row className="chart-header">
@@ -51,7 +52,7 @@ console.log(coinHistory?.data?.coin?.sparkline?.length)
                 <Title level={5} className="current-price">Current {coinName} Price: $ {currentPrice}</Title>
             </Col>
         </Row>
-            {/*<Line data={data} options={options} />*/}
+            <Line data={data} options={options} />
         </>
     );
 };
