@@ -1,8 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {Layout, Typography, Space} from "antd";
-import {Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails} from './components';
-//import Switch from "react-router-dom/es/Switch";
+import {Navbar, Homepage, Cryptocurrencies, News, CryptoDetails} from './components';
 import './App.css';
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
                       <Route exact path="/">
                           <Homepage/>
                       </Route>
-                       <Route path="/exchanges">
-                           <Exchanges/>
-                       </Route>
                        <Route path="/cryptocurrencies">
                            <Cryptocurrencies/>
                        </Route>
@@ -42,7 +38,6 @@ function App() {
                </Typography.Title>
                <Space>
                    <Link to='/'>Home</Link>
-                   <Link to='/exchanges'>Exchanges</Link>
                    <Link to='/news'>News</Link>
                </Space>
            </div>
